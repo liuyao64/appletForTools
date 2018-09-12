@@ -1,0 +1,31 @@
+.header-title{
+  display: flex;
+  flex: 1;
+  font-size: 30rpx;
+  color: #242424;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx #eee solid;
+}
+.active{
+  color: #279cff;
+}
+.title{
+  width: 25%;
+  text-align: center;
+}
+.content{
+  margin: 30rpx;
+  color: #242424;
+}
+.star{
+  font-size: 32rpx;
+}
+.notice{
+  font-size: 30rpx;
+  margin: 30rpx 0 0 0;
+}
+.content-detail{
+  font-size: 26rpx;
+  margin-top: 8rpx;
+}

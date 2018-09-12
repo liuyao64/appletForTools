@@ -1,0 +1,23 @@
+<!-- 缺省图片 -->
+<view wx:if="{{contentArr == ''}}">
+  <image src="../../images/search.png" class="search-no"></image>
+  <view class='font-center font30 font-gray'>没有找到你的备忘录呀~</view>
+</view>
+
+<!-- 新建按钮 -->
+<view class='font-center btn-box' bindtap='addNew'>
+  <view class='font54 font-pink' style='line-height:54rpx;'>+</view>
+  <view class='font-gray font28' style='line-height:28rpx;'>新建</view>
+</view>
+
+<!-- 备忘录数据 -->
+<view wx:for="{{contentArr}}" class='flex-row' bindtap='editContent' data-index='{{index}}'>
+  <view class="padd {{index == tapIndex && sliding == 0?'left':''}}" bindlongpress='longTapDelete' bindtouchstart='touchS' bindtouchmove='touchM' data-index='{{index}}'>
+    <view class='text-box'>
+      <view class='font32 font-333 overhidden'>{{item.content}}</view>
+      <view class='font24 font-gray' style='margin-top:8rpx;'>{{item.date}}</view>
+    </view>
+    <view class='line'></view>
+  </view>
+  <view class="delete font28 {{index == tapIndex && sliding == 0?'delete-left':''}}" data-index='{{index}}' bindtap='deleteContent'>删除</view>
+</view>

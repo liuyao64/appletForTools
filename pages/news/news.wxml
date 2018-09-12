@@ -1,0 +1,5 @@
+ <view class='news-card' wx:for="{{news_list}}" data-url='{{item.url}}' wx:key="list" style='margin-top:30rpx;' bindtap='clickNews'>
+<!-- <image src='{{item.thumbnail_pic_s}}' class='img' mode='aspectFit'></image> -->
+  <view class='title font-333'>{{item.title}}</view>
+  <view class='date'>{{item.date}}</view>
+</view> 

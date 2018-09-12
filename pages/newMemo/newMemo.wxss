@@ -1,0 +1,19 @@
+.content{
+  height: 900rpx;
+  width: 690rpx;
+  /* padding: 30rpx 0; */
+}
+.position{
+  margin: 30rpx 30rpx 0 30rpx;
+}
+.btn-save{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
+  border-top: 2rpx solid #eee;
+  background-color: #fff;
+}
+button::after{
+  border: 0;
+}

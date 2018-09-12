@@ -1,0 +1,62 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.6.6",
+	"appid": "wx5c037905d830d96f",
+	"projectname": "myDesign",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "tally-book",
+					"pathName": "pages/tally-book/tally-book",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "记一笔",
+					"pathName": "pages/record/record",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "备忘录",
+					"pathName": "pages/memo/memo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新建备忘录",
+					"pathName": "pages/newMemo/newMemo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "2048",
+					"pathName": "pages/2048/2048",
+					"query": ""
+				}
+			]
+		}
+	}
+}

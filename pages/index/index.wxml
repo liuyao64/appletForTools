@@ -1,0 +1,15 @@
+<view class='introduce-box'>
+  <text class='font36' style='font-weight:700;'>Tools\n</text>
+  <text class='font28 font-gray'>一些用得到的小工具~</text>
+</view>
+
+<button open-type='contact' class='btn-contact'>联系我</button>
+
+<view wx:for="{{navList}}">
+  <view class='tool-box flex-row space-between' bindtap='{{item.navTo}}'>
+    <view class='font30 font-333'>{{item.title}}</view>
+    <i class="iconfont icon-{{item.icon}}" style="color:#5e5e5f;"></i>
+  </view>
+</view>
+
+<view class='font18 font-center font-gray' style='margin-top:140rpx;'>©LIUYAODESIGN</view>

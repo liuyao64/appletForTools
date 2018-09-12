@@ -1,0 +1,42 @@
+.textarea{
+  border:2rpx solid #9e9e9e;
+  margin: 30rpx auto;
+  padding: 20rpx;
+  font-size: 32rpx;
+}
+.btn-submit{
+  margin-left: 568rpx;
+}
+.no-msg{
+  display: block;
+  text-align: center;
+  font-size: 32rpx;
+  color: #2e2e2e;
+  margin-top: 30rpx;
+}
+.list{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx #fafafa solid;
+  margin: 30rpx auto;
+  width: 640rpx;
+  padding-bottom: 12rpx;
+}
+.user-msg{
+  display:flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+.msg{
+  font-size: 32rpx;
+  color: #2e2e2e;
+}
+.user-icon{
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 5rpx;
+}
+.user-name{
+  font-size: 32rpx;
+  color: #595757;
+}

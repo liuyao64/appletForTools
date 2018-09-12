@@ -1,0 +1,56 @@
+<!-- 收入\支出 tab -->
+<view class='tab-box flex-row'>
+  <view class="font30 font-pink line-height50 font-center {{currentTab == 0 ? 'active' : ''}}" style='width:50%;' data-current='0' bindtap='clickTab'>支出</view>
+  <view class="font30 font-pink line-height50 font-center {{currentTab == 1 ? 'active' : ''}}" style='width:50%;' data-current='1' bindtap='clickTab'>收入</view>
+</view>
+
+<form bindsubmit="formSubmit">
+  <!-- 支出 -->
+  <view wx:if="{{currentTab == 0}}" class='content'>
+    <view class='color-white flex-row space-between top' style='padding:0 30rpx;'>
+      <view class='flex-row'>
+        <view class='icon-cicle font-center' style='margin:8rpx 0;background-color:{{addObj.bgcolor}}'>
+          <i class="iconfont icon-{{addObj.category}} font-white"></i>
+        </view>
+        <view class='font30 font-333 line-height100' style='margin-left:30rpx;'>{{addObj.name}}</view>
+      </view>
+      <input class='font46 font-333 input-money' placeholder='0.00' focus='true' type='digit' name="cost"></input>
+    </view>
+    <view class='line'></view>
+
+    <view class='flex-row line-warp'>
+      <view wx:for="{{payIcon}}" bindtap="chooseType" data-index="{{index}}">
+        <view class='icon-cicle font-center icon-position' data-index="{{index}}" style="background-color:{{index == clickIndex?item.bgcolor:'#eee'}};">
+          <i data-index="{{index}}" class="iconfont icon-{{item.category}} {{index == clickIndex?'font-white':'font-gray'}}"></i>
+        </view>
+        <view class='font28 font-center' style='margin-top:12rpx;color:#5e5e5f;'>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收入 -->
+  <view wx:if="{{currentTab == 1}}" class='content'>
+    <view class='color-white flex-row space-between top' style='padding:0 30rpx;'>
+      <view class='flex-row'>
+        <view class='icon-cicle font-center' style='margin:8rpx 0;background-color:{{getObj.bgcolor}}'>
+          <i class="iconfont icon-{{getObj.category}} font-white"></i>
+        </view>
+        <view class='font30 font-333 line-height100' style='margin-left:30rpx;'>{{getObj.name}}</view>
+      </view>
+      <input class='font46 font-333 input-money' placeholder='0.00' focus='true' type='number' name="cost"></input>
+    </view>
+    <view class='line'></view>
+
+    <view class='flex-row line-warp'>
+      <view wx:for="{{getIcon}}" bindtap="chooseType" data-index="{{index}}">
+        <view class='icon-cicle font-center icon-position' data-index="{{index}}" style="background-color:{{index == clickIndex?item.bgcolor:'#eee'}};">
+          <i data-index="{{index}}" class="iconfont icon-{{item.category}} {{index == clickIndex?'font-white':'font-gray'}}"></i>
+        </view>
+        <view class='font28 font-center' style='margin-top:12rpx;color:#5e5e5f;'>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <button class='btn-save font32 font-pink' form-type='submit'>保存</button>
+
+</form>

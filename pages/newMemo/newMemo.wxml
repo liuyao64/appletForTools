@@ -1,0 +1,5 @@
+<form bindsubmit='saveContent'>
+  <text class="font24 font-gray position">{{time}}</text>
+  <textarea auto-focus="true" class='content font30 font-333 position' name="content" value="{{editObj.content?editObj.content:''}}"></textarea>
+  <button class='btn-save font-pink font32' form-type='submit'>保存</button>
+</form>

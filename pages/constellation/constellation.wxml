@@ -1,0 +1,53 @@
+<view class='card'>
+  <view style='display:flex;flex:1;' bindtap='open'>
+    <view class='cons-msg'>
+      <i class='iconfont {{consIcon}}' style="color:#B9D3EE;font-size:60rpx;"></i>
+      <view>{{consName}}</view>
+      <view>{{consDate}}</view>
+    </view>
+    <view style='display:flex;flex:1;margin:10rpx 30rpx 0 30rpx;'>
+      <view class='constellation-msg'></view>
+      <view style='font-size:36rpx;'>{{constellation.day_notice}}</view>
+    </view>
+  </view>
+  <view style='display:flex;flex-direction:row;margin-top:30rpx;margin-left:30rpx;'>
+    <view style='font-size:24rpx;margin-right:16rpx;'>综合</view>
+    <i wx:for="{{starList}}" wx:key="list" class="iconfont {{summary_star>index?'icon-xingxing':'icon-xingxing1'}} font-blue" style="font-size:32rpx;" ></i>
+    <view style='font-size:24rpx;margin-right:16rpx;margin-left:50rpx;'>爱情</view>
+    <i wx:for="{{starList}}" wx:key="list" class="iconfont {{love_star>index?'icon-xingxing':'icon-xingxing1'}} font-blue" style="font-size:32rpx;" ></i>
+  </view>
+
+  <view style='display:flex;flex-direction:row;margin-top:30rpx;margin-left:30rpx;'>
+    <view style='font-size:24rpx;margin-right:16rpx;'>财富</view>
+    <i wx:for="{{starList}}" wx:key="list" class="iconfont {{money_star>index?'icon-xingxing':'icon-xingxing1'}} font-blue" style="font-size:32rpx;" ></i>
+    <view style='font-size:24rpx;margin-right:16rpx;margin-left:50rpx;'>事业</view>
+    <i wx:for="{{starList}}" wx:key="list" class="iconfont {{work_star>index?'icon-xingxing':'icon-xingxing1'}} font-blue" style="font-size:32rpx;" ></i>
+  </view>
+  <view style='margin:30rpx 30rpx 0 30rpx;'>{{constellation.general_txt}}</view>
+  <view style='margin:30rpx 30rpx 0 30rpx;'>贵人星座：{{constellation.grxz}}</view>
+  <view style='margin:30rpx 30rpx 0 30rpx;'>幸运色：{{constellation.lucky_color}}</view>
+  <view style='margin:30rpx 30rpx 0 30rpx;'>吉时：{{constellation.lucky_time}}</view>
+  <view style='margin:30rpx 30rpx 0 30rpx;'>幸运方位：{{constellation.lucky_direction}}</view>
+  <view class='detail' bindtap='detail'>查看更多 >></view>
+</view>
+
+
+
+<view class="mask" hidden='{{hidden}}'></view>
+<view class='popup' hidden='{{hidden}}'>
+  <view class='popup-header'>定制你的星座运势
+  </view>
+  <image src='../../images/close.png' class='img-close' bindtap="close"></image>
+  <view class='constellation12'>
+    <view wx:for="{{constellation12}}" wx:key="list" class='one' data-star="{{item.star}}" bindtap='clickConstellation'>
+      <i class='iconfont {{item.icon}}' style="color:#B9D3EE;font-size:60rpx;"></i>
+      <view class='name font-gray'>{{item.name}}</view>
+      <view class='date'>{{item.date}}</view>
+    </view>
+    <view class='line-vertical' style='left: 220rpx;'></view>
+    <view class='line-vertical' style='left: 430rpx;'></view>
+    <view class='line-horizontal' style='top: 292rpx;'></view>
+    <view class='line-horizontal' style='top: 492rpx;'></view>
+    <view class='line-horizontal' style='top: 688rpx;'></view>
+  </view>
+</view>

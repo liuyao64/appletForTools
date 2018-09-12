@@ -1,0 +1,762 @@
+<scroll-view scroll-x="true" class="tab-scrollx" scroll-left="{{scrollLeft}}">
+  <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">BMI</view>
+  <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">BMR</view>
+  <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">体脂率</view>
+</scroll-view>
+<swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style='height:{{height}}px;'>
+  <!--BMI  -->
+  <swiper-item>
+    <scroll-view scroll-y style='height:{{height}}px'>
+      <view class='header'>
+        <!-- <image src='https://qingteng.net.cn/images/bmi-header.png' class='header-img'></image> -->
+        <view style='display:flex;flex-direction:row;' bindtap="powerDrawer" data-statu="open">
+          <view class='body'>身体指数\n</view>
+          <view class='what'>什么是BMI？*</view>
+        </view>
+        <view class='one-msg'>BMI[Body Mass Index] 即BMI指数，也叫身体质量指数，是衡量是否肥胖和标准体重的重要指标。适用范围：18至65岁的人士。儿童、发育中的青少年、孕妇、乳母、老人及身型健硕的运动员除外。</view>
+      </view>
+
+      <view class='bg-color'>
+        <view class='BMI-Counter'>
+          <view class='Counter-Title'>BMI计算器</view>
+          <view class='Counter-notice'>输入您的身高以及体重</view>
+          <view class='input-other '>
+            <view class='input-title '>身高(cm)</view>
+            <input class='input-msg' type='number' bindinput='bindinput1' placeholder-style='color:#9e9e9e ' placeholder='请输入您的身高 ' value='{{bmrWeight}}' name='OtherHeight' value='{{OtherHeight}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>体重(kg)</view>
+            <input class='input-msg' type='number' bindinput='bindinput2' name='OtherWeight' placeholder-style='color:#9e9e9e ' placeholder='请输入您的体重' value='{{OtherWeight}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+        </view>
+      </view>
+      <view style='padding-bottom:60rpx;'>
+        <button bindtap='powerDrawerI1' class='Counter-btn' data-statu="open">点击查看结果</button>
+      </view>
+    </scroll-view>
+    <view wx:if="{{BMIOther<=18&&BMIOther>0}}">
+      <view class="drawer_screen" bindtap="powerDrawerI1" data-statu="close" wx:if="{{showModalStatusI1}}"></view>
+      <view animation="{{animationDataI1}}" class="drawer-box-Counter" wx:if="{{showModalStatusI1}}">
+        <view>
+          <image class='img-BMI-Counter' src='https://qingteng.net.cn/images/thin.png'></image>
+          <view class='windows-header'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BMI指数为：</view>
+              <view class="windows-power">{{BMIOther}}</view>
+              <text class='body-state'>身体状态：偏瘦</text>
+            </view>
+            <view class='windows-header-right'>
+              <view class='other-msg'>
+                <view class='windows-height'>身高:</view>
+                <view class='windows-height-count'>{{OtherHeight}}cm</view>
+              </view>
+              <view class='other-msg'>
+                <view class='windows-weight'>体重:</view>
+                <view class='windows-weight-count'>{{OtherWeight}}kg</view>
+              </view>
+            </view>
+          </view>
+          <view class='windows-content1' style='margin-top:-400rpx;'>
+            您的BMI指数已经偏低了，属于偏瘦。沐熙健康建议您饮食方面不要偏食和挑食，可以适量增加高蛋白食物（鸡蛋，牛奶，花生等）。摄入足够蛋白质的情况下，宜多进食一些含脂肪、碳水化合物（即淀粉、糖类）较丰富的食物。每天都应抽出一定的时间来锻炼，这不仅有利于改善食欲，也能使肌肉强壮、体魄健美。
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerI1" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BMIOther<=24&&BMIOther>18}}">
+      <view class="drawer_screen" bindtap="powerDrawerI1" data-statu="close" wx:if="{{showModalStatusI1}}"></view>
+      <view animation="{{animationDataI1}}" class="drawer-box-Counter" wx:if="{{showModalStatusI1}}">
+        <view>
+          <image class='img-BMI-Counter' src='https://qingteng.net.cn/images/normal.png'></image>
+          <view class='windows-header'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BMI指数为：</view>
+              <view class="windows-power">{{BMIOther}}</view>
+              <text class='body-state'>身体状态：正常</text>
+            </view>
+            <view class='windows-header-right'>
+              <view class='other-msg'>
+                <view class='windows-height'>身高:</view>
+                <view class='windows-height-count'>{{OtherHeight}}cm</view>
+              </view>
+              <view class='other-msg'>
+                <view class='windows-weight'>体重:</view>
+                <view class='windows-weight-count'>{{OtherWeight}}kg</view>
+              </view>
+            </view>
+          </view>
+          <view class='windows-content2'>
+            您的BMI指数正常，是最好的身体状态。建议您还是要通过适当的健身来继续保持这种fit身材，当然男性朋友如果想练出性感人鱼线和健美八块腹肌，女性朋友想拥有前凸后翘S型曼妙身材的话，可以通过专业的运动完善身材的线条及健康的质量。
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerI1" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BMIOther<=28&&BMIOther>24}}">
+      <view class="drawer_screen" bindtap="powerDrawerI1" data-statu="close" wx:if="{{showModalStatusI1}}"></view>
+      <view animation="{{animationDataI1}}" class="drawer-box-Counter" wx:if="{{showModalStatusI1}}">
+        <view>
+          <image class='img-BMI-Counter' src='https://qingteng.net.cn/images/very-fat.png'></image>
+          <view class='windows-header'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BMI指数为：</view>
+              <view class="windows-power">{{BMIOther}}</view>
+              <text class='body-state'>身体状态：超重</text>
+            </view>
+            <view class='windows-header-right'>
+              <view class='other-msg'>
+                <view class='windows-height'>身高:</view>
+                <view class='windows-height-count'>{{OtherHeight}}cm</view>
+              </view>
+              <view class='other-msg'>
+                <view class='windows-weight'>体重:</view>
+                <view class='windows-weight-count'>{{OtherWeight}}kg</view>
+              </view>
+            </view>
+          </view>
+          <view class='windows-content3' style='margin-top:-400rpx;'>
+            您的BMI指数已经超重了，就是说您稍微有点胖了。沐熙健康建议您实行“管得住嘴迈得开腿”的健康方法，少吃零食、甜腻、油炸、油煎之类高热量食物，多吃蔬菜水果和膳食纤维及富含营养但是低热量的食品，同时开始做有氧运动，比如跑步、游泳、健身等，提高新陈代谢率，加速消耗替你的脂肪和热量。
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerI1" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BMIOther>28}}">
+      <view class="drawer_screen" bindtap="powerDrawerI1" data-statu="close" wx:if="{{showModalStatusI1}}"></view>
+      <view animation="{{animationDataI1}}" class="drawer-box-Counter" wx:if="{{showModalStatusI1}}">
+        <view>
+          <image class='img-BMI-Counter' src='https://qingteng.net.cn/images/very-fat.png'></image>
+          <view class='windows-header'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BMI指数为：</view>
+              <view class="windows-power">{{BMIOther}}</view>
+              <text class='body-state'>身体状态：肥胖</text>
+            </view>
+            <view class='windows-header-right'>
+              <view class='other-msg'>
+                <view class='windows-height'>身高:</view>
+                <view class='windows-height-count'>{{OtherHeight}}cm</view>
+              </view>
+              <view class='other-msg'>
+                <view class='windows-weight'>体重:</view>
+                <view class='windows-weight-count'>{{OtherWeight}}kg</view>
+              </view>
+            </view>
+          </view>
+          <view class='windows-content4' style='margin-top:-400rpx;'>
+            您的BMI指数已经超标了，您已经达到肥胖的标准了。沐熙健康建议不能吃垃圾食品和过于油腻的食物，多吃富含营养并且低热量的食物，例如大豆、绿色蔬菜、无脂或低脂的牛奶。不喝酒、不喝饮料，每天坚持1小时以上的中等或高等强度运动，例如跑步、游泳、跳绳、登山等，根据个人实际身体情况进行。
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerI1" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="drawer_screen" bindtap="powerDrawerI1" data-statu="close" wx:if="{{showModalStatusI1}}"></view>
+      <view animation="{{animationDataI1}}" class="drawer_box_else" wx:if="{{showModalStatusI1}}">
+        <view class="box_else">
+          <view class='BMI-detail_else' style='padding-top:74rpx;'>请输入正确的信息</view>
+
+        </view>
+        <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawerI1" data-statu="close"></icon>
+      </view>
+    </view>
+    <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+    <view animation="{{animationData}}" class="drawer_box1" wx:if="{{showModalStatus}}">
+      <view class="box1">
+        <view class='BMI-detail' style='padding-top:50rpx;'>BMI[Body Mass Index] 即BMI指数，也叫身体质量指数，是衡量是否肥胖和标准体重的重要指标。</view>
+        <view class='BMI-detail'>适用范围：18至65岁的人士。儿童、发育中的青少年、孕妇、乳母、老人及身型健硕的运动员除外</view>
+        <view class='BMI-detail' style='padding-bottom:60rpx;'>世界卫生组织认为BMI指数保持在22左右是比较理想的。
+        </view>
+      </view>
+      <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawer" data-statu="close"></icon>
+    </view>
+  </swiper-item>
+
+  <!-- BMR -->
+  <swiper-item>
+    <scroll-view scroll-y style='height:{{height}}px'>
+      <view class='header'>
+        <!-- <image src='https://qingteng.net.cn/images/bmi-header.png' class='header-img'></image> -->
+        <view style='display:flex;flex-direction:row;' bindtap="powerDrawer2" data-statu="open">
+          <view class='body'>基础代谢率\n</view>
+          <view class='what'>什么是BMR？*</view>
+        </view>
+
+        <view class='one-msg'>基础代谢率（basal metabolic rate，BMR）是指人体在清醒而又极端安静的状态下，不受肌肉运动、环境温度、食物及精神紧张等影响时的能量代谢率。本工具仅适合正常非孕期健康成年人。</view>
+
+      </view>
+
+      <view class='bmi-detail' style='padding-bottom:50rpx;'>基础代谢率随着性别、年龄等不同而有生理变动。男子的基础代谢率平均比女子高，幼年比成年高；年龄越大，代谢率越低。一般来说，基础代谢率的实际数值与正常的平均值相差10%-15%之内都属于正常。超过正常值20%时，才能算病理状态。甲状腺机能减退时，基础代谢率比正常标准低20%-40%；甲状腺功能亢进时，基础代谢率比正常标准高出25%-80%。其他如肾上腺皮质和脑下垂体机能低下时，基础代谢率也要降低。</view>
+      <view style='border-bottom:32rpx solid #f2f3f5'></view>
+      <view class='bg-color'>
+        <view class='BMI-Counter'>
+          <view class='Counter-Title'>BMR计算器</view>
+          <view class='Counter-notice'>输入您的身高数据</view>
+
+          <view class='input-other '>
+            <view class='input-title '>性别</view>
+            <radio-group style='margin-top:36rpx; margin-left: 110rpx;' bindchange="bindinputR1">
+              <radio value="男" name="man" checked="{{bmrSex=='男'}}" />男
+              <radio style='margin-left:30rpx;' value="女" name='wman' checked="{{bmrSex=='女'}}" />女
+            </radio-group>
+            <!-- <input class='input-msg'type='text' bindinput='bindinputR1' name='bmrSex' placeholder-style='color:#9e9e9e ' placeholder='{{placeholder1}} ' value='{{bmrSex}}'></input> -->
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>年龄</view>
+            <input class='input-msg1' placeholder='请您的输入年龄' type='number' bindinput='bindinputR2' name='bmrAge' placeholder-style='color:#9e9e9e ' value='{{bmrAge}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>身高(cm)</view>
+            <input class='input-msg' type='number' bindinput='bindinputR3' name='bmrHeight' placeholder-style='color:#9e9e9e ' placeholder='请您的输入身高' value='{{bmrHeight}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>体重(kg)</view>
+            <input class='input-msg' type='number' bindinput='bindinputR4' name='bmrWeight' placeholder-style='color:#9e9e9e ' placeholder='请您的输入体重 ' value='{{bmrWeight}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+        </view>
+      </view>
+      <view style='padding-bottom:60rpx;'>
+        <button bindtap='powerDrawerR2' class='Counter-btn' data-statu="open">点击查看结果</button>
+      </view>
+    </scroll-view>
+
+    <view class="drawer_screen" bindtap="powerDrawer2" data-statu="close" wx:if="{{showModalStatus2}}"></view>
+    <view animation="{{animationData2}}" class="drawer_box" wx:if="{{showModalStatus2}}">
+      <view class="box">
+        <view class='BFR-detail' style='padding-top:56rpx;'>基础代谢率（basal metabolic rate，BMR）是指人体在清醒而又极端安静的状态下，不受肌肉运动、环境温度、食物及精神紧张等影响时的能量代谢率。</view>
+        <view class='BFR-detail'>本工具仅适合正常非孕期健康成年人。</view>
+      </view>
+      <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawer2" data-statu="close"></icon>
+    </view>
+    <view wx:if="{{bmrType == '1'}}">
+
+      <view class="drawer_screen" bindtap="powerDrawerR2" data-statu="close" wx:if="{{showModalStatusR2}}"></view>
+      <view animation="{{animationDataR2}}" class="drawer_box" wx:if="{{showModalStatusR2}}">
+        <view class="box">
+          <view class='BMI-detail' style='padding-top:120rpx;text-align:center ;font-size:36rpx;'>您的BMR数据为：{{counterBMR}}千卡</view>
+        </view>
+        <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawerR2" data-statu="close"></icon>
+      </view>
+
+    </view>
+    <view wx:else>
+
+      <view class="drawer_screen" bindtap="powerDrawerR2" data-statu="close" wx:if="{{showModalStatusR2}}"></view>
+      <view animation="{{animationDataR2}}" class="drawer_box" wx:if="{{showModalStatusR2}}">
+        <view class="box" style='height:208rpx;'>
+          <view class='BMI-detail' style='padding-top:80rpx; text-align:center'>请输入正确的信息</view>
+        </view>
+        <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawerR2" data-statu="close"></icon>
+      </view>
+    </view>
+    <!-- 计算器弹窗 -->
+
+  </swiper-item>
+
+  <!-- 体脂率 -->
+  <swiper-item>
+    <scroll-view scroll-y style='height:{{height}}px'>
+      <view class='header'>
+        <!-- <image src='https://qingteng.net.cn/images/bmi-header.png' class='header-img'></image> -->
+        <view style='display:flex;flex-direction:row;' bindtap="powerDrawer3" data-statu="open">
+          <view class='body'>身体体脂率\n</view>
+          <view class='what'>什么体脂率？*</view>
+        </view>
+
+        <view class='one-msg'>体脂率指人体内脂肪重量在人体总体重中所占的比例，又称体脂百分数，它反映人体内脂肪含量的多少。适用范围：18至65岁的人士。儿童、发育中的青少年、孕妇、乳母、老人及身型健硕的运动员除外。</view>
+      </view>
+      <!--用户体脂率  -->
+      <view wx:if="{{gender == '男'}}">
+        <view wx:if='{{date <40}}'>
+          <view style='margin-left:44rpx;width:240rpx;'>
+            <view wx:if="{{type1=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:244rpx;width:170rpx;'>
+            <view wx:if="{{type1==22}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:392rpx;width:85rpx;'>
+            <view wx:if="{{type1=='33'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:485rpx;width:178rpx;'>
+            <view wx:if="{{type1=='44'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-colorm'>
+            <view class='bluem'></view>
+            <view class='greenm'></view>
+            <view class='yellowm'></view>
+            <view class='redm'></view>
+          </view>
+          <view class='bfr-numberm'>
+            <view class='bfr-18m'>10.5</view>
+            <view class='bfr-24m'>21.5</view>
+            <view class='bfr-28m'>26.5</view>
+          </view>
+          <view class='bfr-wordm'>
+            <view class='bfr-word-bluem'>
+              <view class='blue-ciclem'></view>
+              <view class='color-wordm'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1m'>
+              <view class='green-ciclem'></view>
+              <view class='color-wordm'>标准</view>
+            </view>
+            <view class='bfr-word-color2m'>
+              <view class='yellow-ciclem'></view>
+              <view class='color-wordm'>超重</view>
+            </view>
+            <view class='bfr-word-color3m'>
+              <view class='red-ciclem'></view>
+              <view class='color-wordm'>肥胖</view>
+            </view>
+          </view>
+          <view class='bmi-detail'>{{bfrDetail}}</view>
+        </view>
+        <view wx:if='{{date >= 40 && date <59}}'>
+          <view style='margin-left:10rpx;width:180rpx'>
+            <view wx:if="{{type1=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:220rpx;width:170rpx;'>
+            <view wx:if="{{type1=='22'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:400rpx;width:85rpx;'>
+            <view wx:if="{{type1=='33'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:485rpx;width:178rpx;'>
+            <view wx:if="{{type1=='44'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-colorm'>
+            <view class='bluem'></view>
+            <view class='greenm'></view>
+            <view class='yellowm'></view>
+            <view class='redm'></view>
+          </view>
+          <view class='bfr-numberm'>
+            <view class='bfr-18m'>11.5</view>
+            <view class='bfr-24m'>22.5</view>
+            <view class='bfr-28m'>27.5</view>
+          </view>
+          <view class='bfr-wordm'>
+            <view class='bfr-word-bluem'>
+              <view class='blue-ciclem'></view>
+              <view class='color-wordm'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1m'>
+              <view class='green-ciclem'></view>
+              <view class='color-wordm'>标准</view>
+            </view>
+            <view class='bfr-word-color2m'>
+              <view class='yellow-ciclem'></view>
+              <view class='color-wordm'>超重</view>
+            </view>
+            <view class='bfr-word-color3m'>
+              <view class='red-ciclem'></view>
+              <view class='color-wordm'>肥胖</view>
+            </view>
+          </view>
+          <view class='bmi-detail'>{{bfrDetail}}</view>
+        </view>
+        <view wx:if='{{date >= 60}}'>
+          <view style='margin-left:10rpx;width:180rpx;'>
+            <view wx:if="{{type1=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:220rpx;width:170rpx;'>
+            <view wx:if="{{type1==22}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:400rpx;width:85rpx;'>
+            <view wx:if="{{type1==33}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:485rpx;width:178rpx;'>
+            <view wx:if="{{type1== 44}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-colorm'>
+            <view class='bluem'></view>
+            <view class='greenm'></view>
+            <view class='yellowm'></view>
+            <view class='redm'></view>
+          </view>
+          <view class='bfr-numberm'>
+            <view class='bfr-18m'>13.5</view>
+            <view class='bfr-24m'>24.5</view>
+            <view class='bfr-28m'>29.5</view>
+          </view>
+          <view class='bfr-wordm'>
+            <view class='bfr-word-bluem'>
+              <view class='blue-ciclem'></view>
+              <view class='color-wordm'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1m'>
+              <view class='green-ciclem'></view>
+              <view class='color-wordm'>标准</view>
+            </view>
+            <view class='bfr-word-color2m'>
+              <view class='yellow-ciclem'></view>
+              <view class='color-wordm'>超重</view>
+            </view>
+            <view class='bfr-word-color3m'>
+              <view class='red-ciclem'></view>
+              <view class='color-wordm'>肥胖</view>
+            </view>
+          </view>
+          <view class='bmi-detail'>{{bfrDetail}}</view>
+        </view>
+      </view>
+      <view wx:else>
+        <view wx:if='{{date <40}}'>
+          <view style='margin-left:44rpx;width:240rpx;'>
+            <view wx:if="{{type1=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:256rpx;width:200rpx;'>
+            <view wx:if="{{type1=='22'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:420rpx;width:120rpx;'>
+            <view wx:if="{{type1=='33'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:488rpx;width:156rpx;'>
+            <view wx:if="{{type1=='44'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-color'>
+            <view class='blue'></view>
+            <view class='green'></view>
+            <view class='yellow'></view>
+            <view class='red'></view>
+          </view>
+          <view class='bfr-number'>
+            <view class='bfr-18'>20.5</view>
+            <view class='bfr-24'>34.5</view>
+            <view class='bfr-28'>39.5</view>
+          </view>
+          <view class='bfr-word'>
+            <view class='bfr-word-blue'>
+              <view class='blue-cicle'></view>
+              <view class='color-word'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1'>
+              <view class='green-cicle'></view>
+              <view class='color-word'>标准</view>
+            </view>
+            <view class='bfr-word-color2'>
+              <view class='yellow-cicle'></view>
+              <view class='color-word'>超重</view>
+            </view>
+            <view class='bfr-word-color3'>
+              <view class='red-cicle'></view>
+              <view class='color-word'>肥胖</view>
+            </view>
+          </view>
+          <view class='bmi-detail'>{{bfrDetail}}</view>
+        </view>
+        <view wx:if='{{date >= 40 && date <59}}'>
+          <view style='margin-left:20rpx;width:201.5rpx;'>
+            <view wx:if="{{type=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:238rpx;width:182rpx;'>
+            <view wx:if="{{type=='22'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:420rpx;width:65rpx;'>
+            <view wx:if="{{type=='33'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:485rpx;width:156rpx;'>
+            <view wx:if="{{type=='44'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-color'>
+            <view class='blue'></view>
+            <view class='green'></view>
+            <view class='yellow'></view>
+            <view class='red'></view>
+          </view>
+          <view class='bfr-number'>
+            <view class='bfr-18'>21.5</view>
+            <view class='bfr-24'>35.5</view>
+            <view class='bfr-28'>40.5</view>
+          </view>
+          <view class='bfr-word'>
+            <view class='bfr-word-blue'>
+              <view class='blue-cicle'></view>
+              <view class='color-word'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1'>
+              <view class='green-cicle'></view>
+              <view class='color-word'>标准</view>
+            </view>
+            <view class='bfr-word-color2'>
+              <view class='yellow-cicle'></view>
+              <view class='color-word'>超重</view>
+            </view>
+            <view class='bfr-word-color3'>
+              <view class='red-cicle'></view>
+              <view class='color-word'>肥胖</view>
+            </view>
+          </view>
+          <view class='bmi-detail'>{{bfrDetail}}</view>
+        </view>
+        <view wx:if='{{date >= 60}}'>
+          <view style='margin-left:20rpx;width:201.5rpx;'>
+            <view wx:if="{{type=='11'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#50bad0'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/blue.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:238rpx;width:182rpx;'>
+            <view wx:if="{{type=='22'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#76c044;'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/green.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:420rpx;width:65rpx;'>
+            <view wx:if="{{type=='33'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#ffc063'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/yellow.png' class='user-icon'></image>
+            </view>
+          </view>
+          <view style='margin-left:485rpx;width:156rpx;'>
+            <view wx:if="{{type=='44'}}" class='user' style='margin-left:{{bfr}}%;'>
+              <text style='width:50rpx;text-align:center;font-size: 24rpx;color:#f16e74'>{{BFR}}</text>
+              <image src='https://qingteng.net.cn/images/red.png' class='user-icon'></image>
+            </view>
+          </view>
+          <!-- bfr范围色块 -->
+          <view class='bfr-color'>
+            <view class='blue'></view>
+            <view class='green'></view>
+            <view class='yellow'></view>
+            <view class='red'></view>
+          </view>
+          <view class='bfr-number'>
+            <view class='bfr-18'>22.5</view>
+            <view class='bfr-24'>36.5</view>
+            <view class='bfr-28'>41.5</view>
+          </view>
+          <view class='bfr-word'>
+            <view class='bfr-word-blue'>
+              <view class='blue-cicle'></view>
+              <view class='color-word'>偏瘦</view>
+            </view>
+            <view class='bfr-word-color1'>
+              <view class='green-cicle'></view>
+              <view class='color-word'>标准</view>
+            </view>
+            <view class='bfr-word-color2'>
+              <view class='yellow-cicle'></view>
+              <view class='color-word'>超重</view>
+            </view>
+            <view class='bfr-word-color3'>
+              <view class='red-cicle'></view>
+              <view class='color-word'>肥胖</view>
+            </view>
+          </view>
+          <view class='bfr-detail'>{{bfrDetail}}</view>
+        </view>
+      </view>
+      <!-- BFR计算器 -->
+      <view class='bg-color'>
+        <view class='BFR-Counter'>
+          <view class='Counter-Title'>体脂率计算器</view>
+          <view class='Counter-notice'>*本工具仅使用18岁以上的人群</view>
+          <view class='input-other '>
+            <view class='input-title '>性别</view>
+            <radio-group style='margin-top:36rpx; margin-left: 110rpx;' bindchange="bindinputm1">
+              <radio value="男" name="man" checked="{{OtherGender=='男'}}" />男
+              <radio style='margin-left:30rpx;' value="女" name='wman' checked="{{OtherGender=='女'}}" />女
+            </radio-group>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>年龄</view>
+            <input class='input-msg1' type='number' bindinput='bindinputm2' name='OtherHeight' placeholder-style='color:#9e9e9e ' placeholder='请输入您的年龄' value='{{OtherAge}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>身高(cm)</view>
+            <input class='input-msg' type='number' bindinput='bindinputm3' name='OtherHeight' placeholder-style='color:#9e9e9e ' placeholder='请输入您的身高' value='{{OtherHeightM}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+          <view class='input-other '>
+            <view class='input-title '>体重(kg)</view>
+            <input class='input-msg' type='number' bindinput='bindinputm4' name='OtherWeight' placeholder-style='color:#9e9e9e ' placeholder='请输入您的体重 ' value='{{OtherWeightM}}'></input>
+          </view>
+          <view class='Counter-line '></view>
+        </view>
+      </view>
+      <view style='padding-bottom:60rpx;'>
+        <button bindtap='powerDrawerR3' class='Counter-btn' data-statu="open">点击查看结果</button>
+
+      </view>
+    </scroll-view>
+    <view wx:if="{{BFRType == '1'}}">
+      <view class="drawer_screen" bindtap="powerDrawerR3" data-statu="close" wx:if="{{showModalStatusR3}}"></view>
+      <view animation="{{animationDataR3}}" class="drawer-box-Counter" wx:if="{{showModalStatusR3}}">
+        <!-- <view class="box">{{BFROther}}</view> -->
+        <view>
+          <image class='img-BFR-Counter' src='https://qingteng.net.cn/images/thin.png'></image>
+          <view class='windows-header1'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BFR指数为：</view>
+              <view class="windows-power">{{BFROther}}%</view>
+              <text class='body-state'>身体状态：偏瘦</text>
+            </view>
+          </view>
+          <view class='windows-content11'>{{bfrDetailM}}
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerR3" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BFRType == '2'}}">
+      <view class="drawer_screen" bindtap="powerDrawerR3" data-statu="close" wx:if="{{showModalStatusR3}}"></view>
+      <view animation="{{animationDataR3}}" class="drawer-box-Counter" wx:if="{{showModalStatusR3}}">
+        <!-- <view class="box">{{BFROther}}</view> -->
+        <view>
+          <image class='img-BFR-Counter' src='https://qingteng.net.cn/images/normal.png'></image>
+          <view class='windows-header1'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的体脂率为：</view>
+              <view class="windows-power">{{BFROther}}%</view>
+              <text class='body-state'>身体状态：健康</text>
+            </view>
+          </view>
+          <view class='windows-content22'>
+            {{bfrDetailM}}
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerR3" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BFRType == '3'}}">
+      <view class="drawer_screen" bindtap="powerDrawerR3" data-statu="close" wx:if="{{showModalStatusR3}}"></view>
+      <view animation="{{animationDataR3}}" class="drawer-box-Counter" wx:if="{{showModalStatusR3}}">
+        <!-- <view class="box">{{BFROther}}</view> -->
+        <view>
+          <image class='img-BFR-Counter' src='https://qingteng.net.cn/images/small-fat.png'></image>
+          <view class='windows-header1'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BFR指数为：</view>
+              <view class="windows-power">{{BFROther}}%</view>
+              <text class='body-state'>身体状态：超重</text>
+            </view>
+          </view>
+          <view class='windows-content33'>
+            {{bfrDetailM}}
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerR3" data-statu="close"></icon>
+      </view>
+    </view>
+    <view wx:elif="{{BFRType == '4'}}">
+      <view class="drawer_screen" bindtap="powerDrawerR3" data-statu="close" wx:if="{{showModalStatusR3}}"></view>
+      <view animation="{{animationDataR3}}" class="drawer-box-Counter" wx:if="{{showModalStatusR3}}">
+        <!-- <view class="box">{{BFROther}}</view> -->
+        <view>
+          <image class='img-BFR-Counter' src='https://qingteng.net.cn/images/very-fat.png'></image>
+          <view class='windows-header1'>
+            <view class='windows-header-left'>
+              <view class='windows-title'>您的BFR指数为：</view>
+              <view class="windows-power">{{BFROther}}%</view>
+              <text class='body-state'>身体状态：肥胖</text>
+            </view>
+          </view>
+          <view class='windows-content44'>
+            {{bfrDetailM}}
+          </view>
+        </view>
+        <icon class='icon-close' type='clear' size='30' color='#ffffff' bindtap="powerDrawerR3" data-statu="close"></icon>
+      </view>
+    </view>
+
+    <view wx:else>
+      <view class="drawer_screen" bindtap="powerDrawerR3" data-statu="close" wx:if="{{showModalStatusR3}}"></view>
+      <view animation="{{animationDataR3}}" class="drawer_box_else" wx:if="{{showModalStatusR3}}">
+        <view class="box_else">
+          <view class='BFR-detail_else' style='padding-top:74rpx;'>请输入正确的身高和体重</view>
+
+        </view>
+        <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawerR3" data-statu="close"></icon>
+
+      </view>
+    </view>
+
+
+    <!-- 弹窗 -->
+    <view class="drawer_screen" bindtap="powerDrawer3" data-statu="close" wx:if="{{showModalStatus3}}"></view>
+    <view animation="{{animationData3}}" class="drawer_box" wx:if="{{showModalStatus3}}">
+      <view class="box">
+        <view class='BFR-detail' style='padding-top:44rpx;'>体脂率指人体内脂肪重量在人体总体重中所占的比例，又称体脂百分数，它反映人体内脂肪含量的多少。</view>
+        <view class='BMI-detail'>适用范围：18至65岁的人士。儿童、发育中的青少年、孕妇、乳母、老人及身型健硕的运动员除外。</view>
+      </view>
+      <icon class='icon-close' type='clear' size='26' color='#ffffff' bindtap="powerDrawer3" data-statu="close"></icon>
+
+    </view>
+
+  </swiper-item>
+
+</swiper>

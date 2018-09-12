@@ -1,0 +1,39 @@
+<view class="color-blue header">
+  <image src="{{userInfo.avatarUrl}}" class='img-circle avatar-position' bindtap="authorization"></image>
+  <!-- <i class="iconfont icon-{{userInfo.avatarUrl}} avatar-position" wx:if="{{userInfo.nickName == '未登录'}}" style="font-size:112rpx;" ></i> -->
+  <view class='font30 font-center font-white'>{{userInfo.nickName}}</view>
+  <!-- 综合数据显示 -->
+  <view class='flex-row data-position' style='justify-content:space-around;'>
+    <view class='font-white font30 font-center'>
+      <view class='font-center'>{{spendPrice == 0?'0.00':spendPrice}}</view>
+      <view class='margintop10'>总支出</view>
+    </view>
+    <view class='font-white font30 font-center'>
+      <view class='font-center'>{{surplus}}</view>
+      <view class='margintop10'>结余</view>
+    </view>
+    <view class='font-white font30 font-center'>
+      <view class='font-center'>{{getPrice == 0?'0.00':getPrice}}</view>
+      <view class='margintop10'>总收入</view>
+    </view>
+  </view>
+</view>
+
+<!-- 详细数据展示 -->
+<view style='margin-top:20rpx;width:100%;' wx:for="{{recordMsg}}">
+  <view class='flex-row space-between' style='padding:0 30rpx;'>
+    <view class='font22 font-999'>{{item.date}}</view>
+    <view class='font22 font-999'>{{item.moneyType == 0 ?'支出':'收入'}}：{{item.money}}</view>
+  </view>
+  <view class='data-box color-white flex-row space-between' style='padding:0 30rpx;'>
+    <view class='flex-row'>
+      <view class='icon-cicle font-center' style='margin:25rpx 0;background-color:{{item.bgcolor}}'>
+        <i class="iconfont icon-{{item.category}}"></i>
+      </view>
+      <view class='font30 font-333 data-description line-height110'>{{item.name}}</view>
+    </view>
+    <view class='font32 font-333 line-height110'>￥{{item.money}}</view>
+  </view>
+</view>
+
+<view class='color-pink btn-record font-center' bindtap='record'>记一笔</view>

@@ -1,0 +1,12 @@
+<form bindsubmit='submit'>
+  <textarea name='msg' value='{{content}}' placeholder='input something' class='textarea'></textarea>
+  <button form-type='submit' size='mini' class='btn-submit' plain='true'>提交</button>
+</form>
+<view wx:if='{{messageList.length == 0}}' class='no-msg'>------------ 暂无留言------------</view>
+<view wx:for='{{messageList}}' wx:key='list' class='list'>
+  <image class='user-icon' src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+  <view class='user-msg'>
+    <view class='user-name'>{{userInfo.nickName}}</view>
+    <view class='msg'>{{messageList[index].content}}</view>
+  </view>
+</view>

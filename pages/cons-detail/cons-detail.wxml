@@ -1,0 +1,104 @@
+<view class="header-title">
+  <view class="title {{currentTab == 0 ? 'active' : ''}}" data-current='0' bindtap='clickTab'>明日运势</view>
+  <view class="title {{currentTab == 1 ? 'active' : ''}}" data-current='1' bindtap='clickTab'>本周运势</view>
+  <view class="title {{currentTab == 2 ? 'active' : ''}}" data-current='2' bindtap='clickTab'>本月运势</view>
+  <view class="title {{currentTab == 3 ? 'active' : ''}}" data-current='3' bindtap='clickTab'>今年运势</view>
+</view>
+<scroll-view scroll-y style='height:1104rpx;'>
+  <view wx:if="{{currentTab == 0}}" class='content'>
+    <view class='star'>{{consName}} ({{consDate}}) 明日运势</view>
+    <view class='notice'>箴言：{{tomorrow.day_notice}}</view>
+    <view class='notice'>贵人星座：{{tomorrow.grxz}}</view>
+    <view class='notice'>幸运数字：{{tomorrow.lucky_num}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>综合运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{tomorrow.summary_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{tomorrow.general_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>爱情运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{tomorrow.love_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{tomorrow.love_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>事业运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{tomorrow.work_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{tomorrow.work_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>财富运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{tomorrow.money_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{tomorrow.money_txt}}</view>
+  </view>
+  <view wx:if="{{currentTab == 1}}" class='content'>
+    <view class='star'>{{consName}} ({{consDate}}) 本周运势</view>
+    <view class='notice'>箴言：{{week.week_notice}}</view>
+    <view class='notice'>贵人星座：{{week.grxz}}</view>
+    <view class='notice'>幸运数字：{{week.lucky_num}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>综合运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{week.summary_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{week.general_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>爱情运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{week.love_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{week.love_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>事业运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{week.work_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{week.work_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>财富运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{week.money_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{week.money_txt}}</view>
+  </view>
+  <view wx:if="{{currentTab == 2}}" class='content'>
+    <view class='star'>{{consName}} ({{consDate}}) 本月运势</view>
+    <view class='notice'>缘份星座：{{month.yfxz}}</view>
+    <view class='notice'>贵人星座：{{month.grxz}}</view>
+    <view class='notice'>小人星座：{{month.xrxz}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>综合运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{month.summary_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{month.general_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>爱情运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{month.love_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{month.love_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>事业运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{month.work_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{month.work_txt}}</view>
+    <view style='display:flex;flex:1;'>
+      <view class='notice'>财富运势：</view>
+      <i wx:for="{{starList}}" wx:key="list" class="iconfont {{month.money_star>index?'icon-xingji':'icon-favorite'}} font-blue" style="margin-top:34rpx;"></i>
+    </view>
+    <view class='content-detail'>{{month.money_txt}}</view>
+    <view class='notice'>本月优势：</view>
+    <view class='content-detail'>{{month.month_advantage}}</view>
+    <view class='notice'>本月劣势：</view>
+    <view class='content-detail'>{{month.month_weakness}}</view>
+  </view>
+  <view wx:if="{{currentTab == 3}}" class='content'>
+    <view class='star'>{{consName}} ({{consDate}}) 今年运势</view>
+    <view class='notice'>一句话简评：{{year.oneword}}</view>
+    <view class='notice'>综合运势：{{year.general_index}}</view>
+    <view class='content-detail'>{{year.general_txt}}</view>
+    <view class='notice'>爱情运势：{{year.love_index}}</view>
+    <view class='content-detail'>{{year.love_txt}}</view>
+    <view class='notice'>事业运势：{{year.work_index}}</view>
+    <view class='content-detail'>{{year.work_txt}}</view>
+    <view class='notice'>财富运势：{{year.money_index}}</view>
+    <view class='content-detail'>{{year.money_txt}}</view>
+    <view class='notice'>健康运势：</view>
+    <view class='content-detail'>{{year.health_txt}}</view>
+  </view>
+</scroll-view>

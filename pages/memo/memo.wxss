@@ -1,0 +1,48 @@
+.search-no{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 240rpx 255rpx 20rpx 255rpx;
+}
+.btn-box{
+  position: fixed;
+  bottom: 20rpx;
+  left: 275rpx;
+  width: 200rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  box-shadow: 0 4rpx 24rpx 0rpx #ccc; 
+}
+.padd{
+  padding: 30rpx 30rpx 0 30rpx;
+  width: 100%;
+  transition: 0.4s ease-in-out;
+  /* overflow-x: hidden; */
+}
+.text-box{
+  width: 690rpx;
+  height: 100rpx;
+  /* margin: 30rpx 0 0 0; */
+}
+.overhidden{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.line{
+  width: 720rpx;
+  border-top: 2rpx solid #eee;
+}
+
+.delete{
+  height: 132rpx;
+  width: 110rpx;
+  line-height: 132rpx;
+  text-align: center;
+  background-color: #E53A40;
+  color: #fff;
+  transition: 0.4s ease-in-out;
+}
+.left{
+  margin-left: -110rpx;
+  overflow-x: visible;
+}

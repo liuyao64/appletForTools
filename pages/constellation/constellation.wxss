@@ -1,0 +1,140 @@
+page {
+  background-color: #ededf5;
+}
+
+.card {
+  z-index: 1;
+  width: 600rpx;
+  height: 900rpx;
+  background-color: #fff;
+  margin: 120rpx 75rpx;
+  font-size: 26rpx;
+  color: #242424;
+  padding-top: 50rpx;
+}
+
+.cons-msg {
+  width: 200rpx;
+  height: 160rpx;
+  text-align: center;
+}
+
+.detail {
+  margin: 30rpx 30rpx 0 30rpx;
+  color: #279cff;
+  text-align: right;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.popup {
+  position: fixed;
+  top: 64rpx;
+  z-index: 100;
+  width: 650rpx;
+  height: 880rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin: 90rpx 50rpx;
+}
+
+.popup-header {
+  font-size: 30rpx;
+  background-color: #b9d3ee;
+  height: 88rpx;
+  line-height: 88rpx;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.img-close {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 28rpx;
+  left: 580rpx;
+}
+
+.constellation12 {
+  width: 630rpx;
+  padding-top: 4rpx;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.one {
+  width: 33.3%;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 20rpx;
+}
+
+.name {
+  font-size: 28rpx;
+  color: #534847;
+  margin-top: 8rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #9e9e9e;
+  margin-bottom: 20rpx;
+}
+
+.line-vertical {
+  position: absolute;
+  height: 720rpx;
+  border-right: 2rpx dashed #ccc;
+  margin-top: 20rpx;
+}
+
+.line-horizontal {
+  position: absolute;
+  width: 580rpx;
+  border-bottom: 2rpx dashed #ccc;
+  margin-left: 24rpx;
+}
+
+.star {
+  width: 160rpx;
+  height: 36rpx;
+  background: url("http://static.360buyimg.com/item/default/1.0.37/components/comment/i/star.png") no-repeat;
+}
+
+.star1 {
+  background-position: -128rpx 0;
+}
+
+.star2 {
+  background-position: -96rpx 0;
+}
+
+.star3 {
+  background-position: -64rpx 0;
+}
+
+.star4 {
+  background-position: -32rpx 0;
+}
+
+.star5 {
+  background-position: 0 0;
+}

@@ -1,0 +1,30 @@
+page{
+  background-color: #F5F5F5;
+}
+.introduce-box{
+  width: 630rpx;
+  margin: 50rpx auto;
+}
+.tool-box{
+  width: 630rpx;
+  height: 110rpx;
+  padding: 0 30rpx;
+  line-height: 110rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}
+.btn-contact{
+  position: absolute;
+  top: 60rpx;
+  right: 0;
+  background-color: #fff;
+  font-size: 28rpx;
+  border-top-left-radius: 40rpx;
+  border-bottom-left-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+button::after{
+  border: 0;
+}

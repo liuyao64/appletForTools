@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/constellation/constellation",
+    "pages/cons-detail/cons-detail",
+    "pages/news/news",
+    "pages/detail/detail",
+    "pages/massage/massage",
+    "pages/body/body",
+    "pages/snake/snake",
+    "pages/2048/2048",
+    "pages/tally-book/tally-book",
+    "pages/record/record",
+    "pages/memo/memo",
+    "pages/newMemo/newMemo"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "工具箱",
+    "navigationBarTextStyle": "black"
+  }
+}
